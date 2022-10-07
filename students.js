@@ -32,7 +32,7 @@ var uni9 = new Uni(fname.value, lname.value, "TSU", "Faculty of Law", 2, 21)
 
 
 var arr = [uni1, uni2, uni3, uni4, uni5, uni6, uni7, uni8, uni9]
-// var arr = []
+var viewarr = []
 var uniarr = []
 var facultyarr = []
 var coursearr = []
@@ -78,11 +78,12 @@ for(var i of arr){
 
 save.addEventListener("click", function(){
     var student = new Uni(fname.value, lname.value, university.value, faculty.value, course.value, age.value)
-    arr.push(student)
-    console.log(student)
+    viewarr.push(student)
+    console.log(viewarr)
 })
+
 university.addEventListener("change",function(){
-    faculty.innerHTML = " <option value=''>Choose Faculty</option>"
+    faculty.innerHTML = "<option value=''>Choose Faculty</option>"
     var x = arr.filter(i=> i.university == university.value)
 
     x = [... new Set(x.map(i=> i.faculty))]
@@ -93,3 +94,17 @@ university.addEventListener("change",function(){
         faculty.appendChild(facultyopt)
     }
 })
+
+
+
+
+
+view.addEventListener("click", function(){
+ var tmp = [...viewarr].sort((a, b) => b - a).slice(0, 3);
+      console.log(tmp)
+})
+
+
+
+
+
