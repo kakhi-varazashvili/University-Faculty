@@ -82,7 +82,7 @@ save.addEventListener("click", function(){
     console.log(student)
 })
 university.addEventListener("change",function(){
-    faculty.innerHTML = " <option value=''>choose model</option>"
+    faculty.innerHTML = " <option value=''>Choose Faculty</option>"
     var x = arr.filter(i=> i.university == university.value)
 
     x = [... new Set(x.map(i=> i.faculty))]
