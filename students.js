@@ -1,5 +1,5 @@
-class Student{
-    constructor(fname, lname, age, university, course, faculty){
+class Uni{
+    constructor(fname, lname, university, faculty, course, age){
         this.fname = fname
         this.lname = lname
         this.age = age
@@ -13,32 +13,83 @@ class Student{
     }
 }
 var save = document.querySelector(".save")
+var view = document.querySelector(".view")
 var age = document.querySelector(".age")
 var university = document.querySelector(".university")
 var course = document.querySelector(".course")
 var faculty = document.querySelector(".faculty")
 var fname = document.querySelector(".fname")
 var lname = document.querySelector(".lname")
-var arr = []
+var uni1 = new Uni(fname.value, lname.value, "TSU", "Faculty of Arts", 2, 18,)
+var uni2 = new Uni(fname.value, lname.value, "SEU", "Faculty of Classic", 3, 19,)
+var uni3 = new Uni(fname.value, lname.value, "TSU", "Faculty of Education", 4, 20,)
+var uni4 = new Uni(fname.value, lname.value, "GPI", "Faculty of Commerce", 1, 21)
+var uni5 = new Uni(fname.value, lname.value, "TSU", "Faculty of Information Technology", 3, 18)
+var uni6 = new Uni(fname.value, lname.value, "TSU", "Faculty of Engineering", 4, 19)
+var uni7 = new Uni(fname.value, lname.value, "TSU", "Faculty of Law", 2, 19)
+var uni8 = new Uni(fname.value, lname.value, "TSU", "Faculty of Law", 3, 20)
+var uni9 = new Uni(fname.value, lname.value, "TSU", "Faculty of Law", 2, 21)
+
+
+var arr = [uni1, uni2, uni3, uni4, uni5, uni6, uni7, uni8, uni9]
+// var arr = []
+var uniarr = []
+var facultyarr = []
+var coursearr = []
+var agearr = []
+for(var i of arr){
+    uniarr.push(i.university)
+}
+for(var i of arr){
+    facultyarr.push(i.faculty)
+}
+for(var i of arr){
+    coursearr.push(i.course)
+}
+for(var i of arr){
+    agearr.push(i.age)
+}
+    uniarr = [...new Set(uniarr)]
+    facultyarr = [...new Set(facultyarr)]
+    coursearr = [...new Set(coursearr)]
+    agearr = [...new Set(agearr)]
+    // console.log(uniarr)
+
+    for(var i of uniarr){
+        var uniopt = document.createElement("option")
+        uniopt.innerText = i;
+        university.appendChild(uniopt)
+    }
+    for(var i of facultyarr){
+        var facultyopt = document.createElement("option")
+        facultyopt.innerText = i;
+        faculty.appendChild(facultyopt)
+    }
+    for(var i of coursearr){
+        var courseopt = document.createElement("option")
+        courseopt.innerText = i;
+        course.appendChild(courseopt)
+    }
+    for(var i of agearr){
+        var ageopt = document.createElement("option")
+        ageopt.innerText = i;
+        age.appendChild(ageopt)
+    }
 
 save.addEventListener("click", function(){
-    var student = new Student(fname.value,lname.value, age.value, 
-        university.value, course.value, faculty.value )
-
+    var student = new Uni(fname.value, lname.value, university.value, faculty.value, course.value, age.value)
     arr.push(student)
-    console.log(arr)
+    console.log(student)
 })
+university.addEventListener("change",function(){
+    faculty.innerHTML = " <option value=''>choose model</option>"
+    var x = arr.filter(i=> i.university == university.value)
 
+    x = [... new Set(x.map(i=> i.faculty))]
 
-
-
-
-// var student1 = new Student("giorgi", "maisuradze", 19, "tsu", 2, )
-// var student2 = new Student("ana", "bakradze", 19, "tsu", 2, )
-// var student3 = new Student("dato", "kvaratskhelia", 18, "tsu", 1, )
-// var student4 = new Student("mariami", "shubladze", 20, "tsu", 3, )
-// var student5 = new Student("levani", "pachulia", 21, "tsu", 4, )
-// var student6 = new Student("nino", "davitashvili", 19, "tsu", 2, )
-// var student7 = new Student("tamari", "kiknadze", 20, "tsu", 3, )
-
-// var arr = [student1, student2, student3, student4, student5, student6, student7]
+    for(var i of x){
+        var facultyopt = document.createElement('option')
+        facultyopt.innerText = i
+        faculty.appendChild(facultyopt)
+    }
+})
